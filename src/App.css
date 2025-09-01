@@ -1,3 +1,36 @@
+/* Variabel CSS untuk tema */
+:root {
+  /* Light theme (default) */
+  --bg-primary: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --card-border: rgba(255, 255, 255, 0.5);
+  --header-bg: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  --footer-bg: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  --button-bg: hwb(134 26% 43%);
+  --button-hover: hwb(134 20% 56%);
+  --price-color: #2563eb;
+  --welcome-bg: rgba(255, 255, 255, 0.9);
+  --products-bg: rgba(255, 255, 255, 0.95);
+}
+
+/* Dark theme */
+body.dark-mode {
+  --bg-primary: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --card-bg: rgba(30, 41, 59, 0.95);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --header-bg: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+  --footer-bg: linear-gradient(135deg, #0f172a 0%, #020617 100%);
+  --button-bg: hwb(134 20% 56%);
+  --button-hover: hwb(134 15% 65%);
+  --price-color: #60a5fa;
+  --welcome-bg: rgba(30, 41, 59, 0.9);
+  --products-bg: rgba(30, 41, 59, 0.95);
+}
+
 /* Global Styles */
 body, #root {
   display: flex;
@@ -5,9 +38,36 @@ body, #root {
   min-height: 100vh;
   margin: 0;
   font-family: 'Segoe UI', 'Arial', sans-serif;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  background: var(--bg-primary);
+  color: var(--text-primary);
   overflow-y: auto;
-  color: #1e293b; /* Tambahkan warna teks default */
+  transition: all 0.3s ease;
+}
+
+html, body {
+  overflow-y: auto;
+  height: 100%;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
 }
 
 /* Main Content */
@@ -24,23 +84,22 @@ body, #root {
   z-index: 1;
 }
 
-/* Welcome Section - PERBAIKAN DI SINI */
+/* Welcome Section */
 .welcome-section {
   margin-bottom: 60px;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--welcome-bg);
   padding: 40px;
   border-radius: 20px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--card-border);
 }
 
 .welcome-section h1 {
-  color: #1e293b !important; /* Force warna */
+  color: var(--text-primary);
   margin: 0 0 20px 0;
-  font-size: 2.8rem; /* Perbesar sedikit */
+  font-size: 2.8rem;
   font-weight: 800;
-  padding-top: 0;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   letter-spacing: 0.5px;
 }
@@ -57,7 +116,7 @@ body, #root {
 
 /* Halo Button styling */
 .halo-button {
-  background-color: hwb(134 26% 43%);
+  background-color: var(--button-bg);
   color: #fff;
   border: none;
   padding: 16px 32px;
@@ -71,7 +130,7 @@ body, #root {
 }
 
 .halo-button:hover {
-  background-color: hwb(134 20% 56%);
+  background-color: var(--button-hover);
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
 }
@@ -82,77 +141,26 @@ body, #root {
   max-width: 1200px;
   text-align: center;
   padding: 50px 30px;
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--products-bg);
   border-radius: 20px;
   margin: 40px 0;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--card-border);
 }
 
 .products-container h2 {
-  color: #1e293b;
+  color: var(--text-primary);
   font-size: 2.2rem;
   margin-bottom: 15px;
   font-weight: 700;
 }
 
 .products-subtitle {
-  color: #64748b;
+  color: var(--text-secondary);
   font-size: 1.1rem;
   margin-bottom: 30px;
   font-weight: 500;
-}
-
-/* ... (kode lainnya tetap sama) ... */
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .welcome-section {
-    padding: 30px 20px;
-    margin-bottom: 40px;
-  }
-  
-  .welcome-section h1 {
-    font-size: 2.2rem;
-  }
-  
-  .halo-button {
-    padding: 14px 28px;
-    font-size: 1rem;
-  }
-}
-
-.halo-button:hover {
-  background-color: hwb(134 20% 56%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-}
-
-/* Products Container */
-.products-container {
-  width: 100%;
-  max-width: 1200px;
-  text-align: center;
-  padding: 50px 30px;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
-  margin: 40px 0;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-}
-
-.products-container h2 {
-  color: #1e293b;
-  font-size: 2.2rem;
-  margin-bottom: 15px;
-  font-weight: 700;
-}
-
-.products-subtitle {
-  color: #64748b;
-  font-size: 1.1rem;
-  margin-bottom: 30px;
 }
 
 /* Products Grid Layout */
@@ -169,19 +177,17 @@ body, #root {
 
 /* Product Card Styles */
 .card-product {
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  background: var(--card-bg);
   border-radius: 20px;
   padding: 0;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   margin: 0;
-  color: #222;
+  color: var(--text-primary);
   transition: all 0.3s ease;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--card-border);
   overflow: hidden;
   max-width: 380px;
   height: fit-content;
-  opacity: 1;
-  visibility: visible;
 }
 
 .card-product:hover {
@@ -191,7 +197,7 @@ body, #root {
 }
 
 .card-header {
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  background: var(--header-bg);
   padding: 25px;
   text-align: center;
 }
@@ -212,14 +218,14 @@ body, #root {
 .card-body .product-price {
   font-size: 2rem;
   font-weight: 800;
-  color: #2563eb;
+  color: var(--price-color);
   margin: 0 0 20px 0;
   text-align: center;
 }
 
 .card-body .product-description {
   font-size: 1.05rem;
-  color: #475569;
+  color: var(--text-secondary);
   line-height: 1.6;
   margin: 0;
   text-align: center;
@@ -246,7 +252,6 @@ body, #root {
   transition: all 0.2s ease;
   font-weight: 600;
   min-width: 120px;
-  opacity: 1;
 }
 
 .card-btn:hover {
@@ -273,7 +278,7 @@ body, #root {
 
 /* Footer Styles */
 .footer {
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  background: var(--footer-bg);
   color: white;
   padding: 20px;
   text-align: center;
@@ -289,6 +294,25 @@ body, #root {
   font-size: 1rem;
 }
 
+/* Button Styles */
+button {
+  background-color: var(--button-bg);
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+button:hover {
+  background-color: var(--button-hover);
+  transform: translateY(-2px);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .main-content {
@@ -297,12 +321,17 @@ body, #root {
   }
   
   .welcome-section {
+    padding: 30px 20px;
     margin-bottom: 40px;
   }
   
-  h1 {
-    font-size: 2rem;
-    padding-top: 10px;
+  .welcome-section h1 {
+    font-size: 2.2rem;
+  }
+  
+  .halo-button {
+    padding: 14px 28px;
+    font-size: 1rem;
   }
   
   .products-grid {
@@ -355,5 +384,13 @@ body, #root {
   
   .footer p {
     font-size: 0.9rem;
+  }
+  
+  .theme-toggle {
+    top: 15px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
   }
 }

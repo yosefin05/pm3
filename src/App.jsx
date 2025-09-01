@@ -4,20 +4,23 @@ import Header from "./header";
 import HaloButton from "./halobutton";
 import CardProduk from "./components/card";
 import { Footer } from "./components/footer";
+import { ThemeProvider } from "./context/themecontext";
+import ThemeToggle from "./components/themetoggle";
 
-function App() {
+function AppContent() {
   return (
     <>
       <Header />
+      <ThemeToggle /> {/* Tambahkan toggle button */}
       <div className="main-content">
         <div className="welcome-section">
-          <h1>Selamat Datang di Kelompok 4!</h1> {/* Perbaikan typo */}
+          <h1>Selamat Datang di Kelompok 4!</h1>
           <HaloButton />
         </div>
         
         <div className="products-container">
-          <h2>🛍️ Produk Kami</h2> {/* Perbaikan typo */}
-          <p className="products-subtitle">Temukan produk terbaik dengan kualitas premium</p> {/* Perbaikan typo */}
+          <h2>🛍️ Produk Kami</h2>
+          <p className="products-subtitle">Temukan produk terbaik dengan kualitas premium</p>
           
           <div className="products-grid">
             <CardProduk 
@@ -42,6 +45,14 @@ function App() {
       </div>
       <Footer />
     </>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 }
 
