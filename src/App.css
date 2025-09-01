@@ -1,27 +1,35 @@
-/* App.css */
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f4f8;
+/* src/App.css */
+body, #root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   margin: 0;
-  padding: 20px;
+}
+
+.main-content {
+  flex: 1;                      
+  display: flex;
+  flex-direction: column;       
+  justify-content: center;      /* center vertikal */
+  align-items: center;          /* center horizontal */
+  text-align: center;
 }
 
 h1 {
   color: #333;
-  text-align: center;
+  margin: 0 0 20px 0;
 }
 
 button {
   background-color: hwb(134 26% 43%);
-  color: white;
+  color: #fff;
   border: none;
   padding: 10px 20px;
   font-size: 16px;
   border-radius: 8px;
   cursor: pointer;
-  display: block;
-  margin: 20px auto;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
