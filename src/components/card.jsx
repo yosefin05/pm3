@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CardProduk = ({ name, price, description }) => {
+const CardProduk = ({ name, price, description, onViewDetail, onBuyNow }) => {
   return (
     <div className="card-product">
       <div className="card-header">
@@ -11,8 +11,12 @@ const CardProduk = ({ name, price, description }) => {
         <p className="product-description">{description}</p>
       </div>
       <div className="card-footer">
-        <button className="card-btn">Lihat Detail</button>
-        <button className="card-btn card-btn-primary">Beli Sekarang</button>
+        <button className="card-btn" onClick={onViewDetail}>
+          Lihat Detail
+        </button>
+        <button className="card-btn card-btn-primary" onClick={onBuyNow}>
+          Beli Sekarang
+        </button>
       </div>
     </div>
   );

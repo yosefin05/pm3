@@ -13,6 +13,13 @@
   --price-color: #2563eb;
   --welcome-bg: rgba(255, 255, 255, 0.9);
   --products-bg: rgba(255, 255, 255, 0.95);
+  --header-bg-color: #282c34;
+  --header-text-color: white;
+  --header-link-hover: #61dafb;
+  --input-bg: rgba(255, 255, 255, 0.95);
+  --input-border: #ccc;
+  --input-error: #d00;
+  --input-text: #1e293b;
 }
 
 /* Dark theme */
@@ -29,19 +36,29 @@ body.dark-mode {
   --price-color: #60a5fa;
   --welcome-bg: rgba(30, 41, 59, 0.9);
   --products-bg: rgba(30, 41, 59, 0.95);
+  --header-b极-color: #1a1e24;
+  --header-text-color: #f1f5f9;
+  --header-link-hover: #90cdf4;
+  --input-bg: rgba(30, 41, 59, 0.8);
+  --input-border: #475569;
+  --input-error: #f87171;
+  --input-text: #f1f5f9;
 }
 
 /* Global Styles */
-body, #root {
+html, body, #root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   margin: 0;
+  padding: 0;
   font-family: 'Segoe UI', 'Arial', sans-serif;
   background: var(--bg-primary);
   color: var(--text-primary);
   overflow-y: auto;
   transition: all 0.3s ease;
+  text-align: center;
+  width: 100%;
 }
 
 /* Main Content */
@@ -65,7 +82,7 @@ html, body {
 /* Theme Toggle Button */
 .theme-toggle {
   position: fixed;
-  top: 20px;
+  top: 80px;
   right: 20px;
   z-index: 1000;
   background: var(--card-bg);
@@ -82,7 +99,6 @@ html, body {
 .theme-toggle:hover {
   transform: scale(1.1);
 }
-
 
 
 /* Welcome Section */
@@ -134,6 +150,190 @@ html, body {
   background-color: var(--button-hover);
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Input Section */
+.input-section {
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 20px;
+  margin: 30px 0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--card-border);
+  max-width: 600px;
+  width: 100%;
+}
+
+.input-form {
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.input-label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.input-container {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.input-field {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  color: var(--input-text);
+  font-size: 14px;
+}
+
+.input-field.input-error {
+  border-color: var(--input-error);
+}
+
+.input-button {
+  background-color: var(--button-bg);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.input-button.secondary {
+  background-color: #64748b;
+}
+
+.input-button:hover {
+  background-color: var(--button-hover);
+  transform: translateY(-2px);
+}
+
+.input-button.secondary:hover {
+  background-color: #475569;
+}
+
+.input-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 12px;
+}
+
+.error-message {
+  color: var(--input-error);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.error-message.visible {
+  opacity: 1;
+}
+
+.char-counter {
+  color: var(--text-secondary);
+}
+
+.input-result {
+  font-style: italic;
+  color: var(--text-primary);
+  margin-top: 15px;
+}
+
+.required-asterisk {
+  color: var(--input-error);
+}
+
+/* Counter Section */
+.counter-container {
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 20px;
+  margin: 30px 0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--card-border);
+  max-width: 600px;
+  width: 100%;
+}
+
+.counter-section {
+  margin-top: 10px;
+}
+
+.counter-display {
+  background: var(--welcome-bg);
+  padding: 20px;
+  border-radius: 12px;
+  margin: 15px 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.counter-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.counter-button {
+  background-color: var(--button-bg);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  min-width: 120px;
+}
+
+.counter-button:hover {
+  background-color: var(--button-hover);
+  transform: translateY(-2px);
+}
+
+/* Profile Container */
+.profile-container {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+  padding: 50px 30px;
+  background: var(--products-bg);
+  border-radius: 20px;
+  margin: 40px 0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--card-border);
+}
+
+/* Students Container */
+.students-container {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+  padding: 50px 30px;
+  background: var(--products-bg);
+  border-radius: 20px;
+  margin: 40px 0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--card-border);
+}
+
+.students-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
 }
 
 /* Products Container */
@@ -270,11 +470,25 @@ html, body {
   transform: translateY(-3px);
 }
 
-/* Remove old card styles to avoid conflicts */
-.card,
-.card-action,
-.card-action button {
-  display: none;
+/* Testimonials Container */
+.testimonials-container {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+  padding: 50px 30px;
+  background: var(--products-bg);
+  border-radius: 20px;
+  margin: 40px 0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--card-border);
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
 }
 
 /* Footer Styles */
@@ -316,9 +530,28 @@ button:hover {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .header {
+    padding: 12px 20px;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .website-name h1 {
+    font-size: 20px;
+  }
+  
+  .navigation ul {
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .navigation a {
+    font-size: 14px;
+  }
+  
   .main-content {
-    padding: 20px 15px;
-    justify-content: flex-start;
+    padding: 100px 15px 30px;
   }
   
   .welcome-section {
@@ -335,15 +568,26 @@ button:hover {
     font-size: 1rem;
   }
   
-  .products-grid {
+  .input-section,
+  .counter-container,
+  .profile-container,
+  .students-container,
+  .products-container,
+  .testimonials-container {
+    margin: 20px 0;
+    padding: 30px 15px;
+  }
+  
+  .input-container {
+    flex-direction: column;
+  }
+  
+  .products-grid,
+  .students-grid,
+  .testimonials-grid {
     grid-template-columns: 1fr;
     gap: 20px;
     padding: 10px;
-  }
-  
-  .products-container {
-    margin: 20px 0;
-    padding: 30px 15px;
   }
   
   .card-product {
@@ -359,7 +603,9 @@ button:hover {
     width: 100%;
   }
   
-  .products-container h2 {
+  .products-container h2,
+  .students-container h2,
+  .testimonials-container h2 {
     font-size: 1.8rem;
   }
   
@@ -388,10 +634,18 @@ button:hover {
   }
   
   .theme-toggle {
-    top: 15px;
+    top: 70px;
     right: 15px;
     width: 45px;
     height: 45px;
     font-size: 1.3rem;
+  }
+  
+  .counter-buttons {
+    flex-direction: column;
+  }
+  
+  .counter-button {
+    width: 100%;
   }
 }

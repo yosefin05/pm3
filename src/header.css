@@ -1,6 +1,6 @@
-/* src/components/header.css */
+/* Header Styles */
 .header {
-  position: fixed; /* selalu di atas */
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -13,6 +13,7 @@
   width: 100%;
   box-sizing: border-box;
   z-index: 1000;
+  transition: all 0.3s ease;
 }
 
 .website-name h1 {
@@ -34,8 +35,84 @@
   text-decoration: none;
   font-size: 16px;
   transition: color 0.3s ease;
+  font-weight: 500;
 }
 
 .navigation a:hover {
-  color: #ddd;
+  color: #61dafb;
+  transform: translateY(-2px);
+}
+
+/* Tambahkan padding ke main content untuk mengkompensasi header fixed */
+.main-content {
+  padding-top: 80px; /* Tambahkan padding atas untuk header fixed */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  padding: 80px 20px 40px; /* Atas: 80px, kanan/kiri: 20px, bawah: 40px */
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive Design untuk Header */
+@media (max-width: 768px) {
+  .header {
+    padding: 12px 20px;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .website-name h1 {
+    font-size: 20px;
+  }
+  
+  .navigation ul {
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .navigation a {
+    font-size: 14px;
+  }
+  
+  .main-content {
+    padding-top: 100px; /* Lebih banyak padding untuk mobile */
+    padding: 100px 15px 30px;
+  }
+}
+
+/* Variabel CSS untuk tema - Tambahkan header bg color */
+:root {
+  /* Light theme (default) */
+  --header-bg-color: #282c34;
+  --header-text-color: white;
+  --header-link-hover: #61dafb;
+  /* ... variabel lainnya tetap sama ... */
+}
+
+/* Dark theme - Header bisa tetap sama atau berbeda */
+body.dark-mode {
+  --header-bg-color: #1a1e24;
+  --header-text-color: #f1f5f9;
+  --header-link-hover: #90cdf4;
+  /* ... variabel lainnya tetap sama ... */
+}
+
+/* Update header styles dengan variabel */
+.header {
+  background-color: var(--header-bg-color);
+  color: var(--header-text-color);
+}
+
+.navigation a {
+  color: var(--header-text-color);
+}
+
+.navigation a:hover {
+  color: var(--header-link-hover);
 }
