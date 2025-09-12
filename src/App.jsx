@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
+
+// Component imports
 import Header from "./header";
 import HaloButton from "./HaloButton";
 import CardProduk from "./components/card";
@@ -10,14 +12,20 @@ import Profile from "./components/profil";
 import KartuSiswa from "./components/kartusiswa";
 import Testimoni from "./components/testimoni";
 
-// Komponen InputNama
-function InputNama({ defaultValue = "", onSubmit }) {
+// Reusable InputField Component
+function InputField({ 
+  label, 
+  defaultValue, 
+  onSubmit, 
+  maxLength, 
+  placeholder, 
+  type = "text" 
+}) {
   const [value, setValue] = useState(defaultValue);
   const [error, setError] = useState("");
-  const maxLength = 50;
 
   const validate = (text) => {
-    if (!text.trim()) return "Nama tidak boleh kosong.";
+    if (!text.trim()) return `${label} tidak boleh kosong.`;
     if (text.length > maxLength) return `Maksimal ${maxLength} karakter.`;
     return "";
   };
@@ -26,44 +34,78 @@ function InputNama({ defaultValue = "", onSubmit }) {
     e.preventDefault();
     const msg = validate(value);
     setError(msg);
+    
     if (!msg && onSubmit) {
       onSubmit(value.trim());
       setValue("");
     }
   };
 
+  const handleReset = () => {
+    setValue("");
+    setError("");
+  };
+
   return (
     <form onSubmit={handleSubmit} className="input-form">
-      <label htmlFor="nama" className="input-label">
-        Masukkan Nama <span className="required-asterisk">*</span>
+      <label htmlFor={label.toLowerCase()} className="input-label">
+        {label} <span className="required-asterisk">*</span>
       </label>
 
       <div className="input-container">
-        <input
-          id="nama"
-          type="text"
-          value={value}
-          onChange={(e) => { setValue(e.target.value); setError(""); }}
-          placeholder="Tulis nama..."
-          maxLength={maxLength}
-          className={`input-field ${error ? "input-error" : ""}`}
-        />
+        {type === "textarea" ? (
+          <textarea
+            id={label.toLowerCase()}
+            value={value}
+            onChange={(e) => { 
+              setValue(e.target.value); 
+              setError(""); 
+            }}
+            placeholder={placeholder}
+            maxLength={maxLength}
+            rows="3"
+            className={`input-field textarea-field ${error ? "input-error" : ""}`}
+          />
+        ) : (
+          <input
+            id={label.toLowerCase()}
+            type={type}
+            value={value}
+            onChange={(e) => { 
+              setValue(e.target.value); 
+              setError(""); 
+            }}
+            placeholder={placeholder}
+            maxLength={maxLength}
+            className={`input-field ${error ? "input-error" : ""}`}
+          />
+        )}
 
-        <button type="submit" className="input-button">Simpan</button>
-        <button type="button" onClick={() => { setValue(""); setError(""); }} className="input-button secondary">
+        <button type="submit" className="input-button">
+          Simpan
+        </button>
+        <button 
+          type="button" 
+          onClick={handleReset} 
+          className="input-button secondary"
+        >
           Reset
         </button>
       </div>
 
       <div className="input-footer">
-        <span className={`error-message ${error ? "visible" : ""}`}>{error || "\u00A0"}</span>
-        <span className="char-counter">{value.length}/{maxLength}</span>
+        <span className={`error-message ${error ? "visible" : ""}`}>
+          {error || "\u00A0"}
+        </span>
+        <span className="char-counter">
+          {value.length}/{maxLength}
+        </span>
       </div>
     </form>
   );
 }
 
-// Komponen Counter
+// Counter Component
 function Counter() {
   const [count, setCount] = useState(0);
 
@@ -76,13 +118,22 @@ function Counter() {
       </div>
 
       <div className="counter-buttons">
-        <button onClick={() => setCount((c) => c + 1)} className="counter-button">
+        <button 
+          onClick={() => setCount((c) => c + 1)} 
+          className="counter-button"
+        >
           Klik untuk Menambah (+)
         </button>
-        <button onClick={() => setCount((c) => c - 1)} className="counter-button">
+        <button 
+          onClick={() => setCount((c) => c - 1)} 
+          className="counter-button"
+        >
           Klik untuk mengurangi (-)
         </button>
-        <button onClick={() => setCount(0)} className="counter-button">
+        <button 
+          onClick={() => setCount(0)} 
+          className="counter-button"
+        >
           Klik untuk mereset
         </button>
       </div>
@@ -109,24 +160,61 @@ function AppContent() {
     setProfilData((p) => ({ ...p, nama: namaBaru }));
   };
 
+  const handleSimpanKelas = (kelasBaru) => {
+    setProfilData((p) => ({ ...p, kelas: kelasBaru }));
+  };
+
+  const handleSimpanDeskripsi = (deskripsiBaru) => {
+    setProfilData((p) => ({ ...p, deskripsi: deskripsiBaru }));
+  };
+
   return (
     <>
       <Header />
       <ThemeToggle />
+      
       <div className="main-content">
         <div className="welcome-section">
           <h1>Selamat Datang di Kelompok 4!</h1>
           <HaloButton />
         </div>
         
-        {/* Input Nama Section */}
+        {/* Input Data Profil Section */}
         <div className="input-section">
-          <InputNama defaultValue={profilData.nama} onSubmit={handleSimpanNama} />
+          <h2>Isi Data Profil</h2>
           
-          {profilData.nama && (
-            <p className="input-result">
-              Nama yang kamu masukkan: <strong>{profilData.nama}</strong>
-            </p>
+          <InputField 
+            label="Nama"
+            defaultValue={profilData.nama}
+            onSubmit={handleSimpanNama}
+            maxLength={50}
+            placeholder="Tulis nama lengkap Anda"
+          />
+          
+          <InputField 
+            label="Kelas"
+            defaultValue={profilData.kelas}
+            onSubmit={handleSimpanKelas}
+            maxLength={20}
+            placeholder="Contoh: XII SIJA 1"
+          />
+          
+          <InputField 
+            label="Deskripsi"
+            defaultValue={profilData.deskripsi}
+            onSubmit={handleSimpanDeskripsi}
+            maxLength={150}
+            placeholder="Deskripsikan diri Anda..."
+            type="textarea"
+          />
+          
+          {(profilData.nama || profilData.kelas || profilData.deskripsi) && (
+            <div className="input-result">
+              <h3>Data Profil Anda:</h3>
+              {profilData.nama && <p>Nama: <strong>{profilData.nama}</strong></p>}
+              {profilData.kelas && <p>Kelas: <strong>{profilData.kelas}</strong></p>}
+              {profilData.deskripsi && <p>Deskripsi: <strong>{profilData.deskripsi}</strong></p>}
+            </div>
           )}
         </div>
         
@@ -152,7 +240,9 @@ function AppContent() {
         {/* Produk Section */}
         <div className="products-container">
           <h2>🛍️ Produk Kami</h2>
-          <p className="products-subtitle">Temukan produk terbaik dengan kualitas premium</p>
+          <p className="products-subtitle">
+            Temukan produk terbaik dengan kualitas premium
+          </p>
           
           <div className="products-grid">
             <CardProduk 
@@ -185,11 +275,20 @@ function AppContent() {
         <div className="testimonials-container">
           <h2>💬 Testimoni</h2>
           <div className="testimonials-grid">
-            <Testimoni nama="Josie" isi="Lumayan susah tapi seru" rating={4} />
-            <Testimoni nama="Fauzan" isi="Mending main roblok" rating={1} />
+            <Testimoni 
+              nama="Josie" 
+              isi="Lumayan susah tapi seru" 
+              rating={4} 
+            />
+            <Testimoni 
+              nama="Fauzan" 
+              isi="Mending main roblok" 
+              rating={1} 
+            />
           </div>
         </div>
       </div>
+      
       <Footer />
     </>
   );

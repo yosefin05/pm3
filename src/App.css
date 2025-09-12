@@ -1,4 +1,4 @@
-/* Variabel CSS untuk tema */
+/* ===== VARIABEL CSS ===== */
 :root {
   /* Light theme (default) */
   --bg-primary: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
@@ -36,7 +36,7 @@ body.dark-mode {
   --price-color: #60a5fa;
   --welcome-bg: rgba(30, 41, 59, 0.9);
   --products-bg: rgba(30, 41, 59, 0.95);
-  --header-b极-color: #1a1e24;
+  --header-bg-color: #1a1e24;
   --header-text-color: #f1f5f9;
   --header-link-hover: #90cdf4;
   --input-bg: rgba(30, 41, 59, 0.8);
@@ -45,7 +45,7 @@ body.dark-mode {
   --input-text: #f1f5f9;
 }
 
-/* Global Styles */
+/* ===== GLOBAL STYLES ===== */
 html, body, #root {
   display: flex;
   flex-direction: column;
@@ -61,25 +61,57 @@ html, body, #root {
   width: 100%;
 }
 
-/* Main Content */
-.main-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 100px 20px;
-  width: 100%;
-  position: relative;
-  z-index: 1;
-}
-
 html, body {
   overflow-y: auto;
   height: 100%;
 }
 
-/* Theme Toggle Button */
+/* ===== HEADER STYLES ===== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: var(--header-bg-color);
+  color: var(--header-text-color);
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.website-name h1 {
+  margin: 0;
+  font-size: 24px;
+  color: whitesmoke;
+}
+
+.navigation ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.navigation a {
+  color: var(--header-text-color);
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s ease;
+  font-weight: 500;
+}
+
+.navigation a:hover {
+  color: var(--header-link-hover);
+  transform: translateY(-2px);
+}
+
+/* ===== THEME TOGGLE ===== */
 .theme-toggle {
   position: fixed;
   top: 80px;
@@ -100,8 +132,23 @@ html, body {
   transform: scale(1.1);
 }
 
+/* ===== MAIN CONTENT ===== */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  padding: 120px 20px 40px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+}
 
-/* Welcome Section */
+/* ===== WELCOME SECTION ===== */
 .welcome-section {
   margin-bottom: 60px;
   background: var(--welcome-bg);
@@ -131,7 +178,7 @@ html, body {
   border-radius: 2px;
 }
 
-/* Halo Button styling */
+/* ===== HALO BUTTON ===== */
 .halo-button {
   background-color: var(--button-bg);
   color: #fff;
@@ -152,7 +199,7 @@ html, body {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
 }
 
-/* Input Section */
+/* ===== INPUT SECTION ===== */
 .input-section {
   background: var(--card-bg);
   padding: 30px;
@@ -164,8 +211,14 @@ html, body {
   width: 100%;
 }
 
+.input-section h2 {
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
 .input-form {
-  margin-bottom: 12px;
+  margin-bottom: 20px;
   text-align: left;
 }
 
@@ -190,6 +243,13 @@ html, body {
   background: var(--input-bg);
   color: var(--input-text);
   font-size: 14px;
+  font-family: inherit;
+}
+
+.textarea-field {
+  resize: vertical;
+  min-height: 80px;
+  font-family: inherit;
 }
 
 .input-field.input-error {
@@ -206,6 +266,7 @@ html, body {
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .input-button.secondary {
@@ -243,16 +304,33 @@ html, body {
 }
 
 .input-result {
-  font-style: italic;
+  margin-top: 20px;
+  padding: 15px;
+  background: var(--welcome-bg);
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+}
+
+.input-result h3 {
+  margin: 0 0 10px 0;
   color: var(--text-primary);
-  margin-top: 15px;
+  font-size: 1.2rem;
+}
+
+.input-result p {
+  margin: 5px 0;
+  color: var(--text-secondary);
+}
+
+.input-result strong {
+  color: var(--text-primary);
 }
 
 .required-asterisk {
   color: var(--input-error);
 }
 
-/* Counter Section */
+/* ===== COUNTER SECTION ===== */
 .counter-container {
   background: var(--card-bg);
   padding: 30px;
@@ -301,7 +379,7 @@ html, body {
   transform: translateY(-2px);
 }
 
-/* Profile Container */
+/* ===== PROFILE SECTION ===== */
 .profile-container {
   width: 100%;
   max-width: 1200px;
@@ -315,7 +393,48 @@ html, body {
   border: 1px solid var(--card-border);
 }
 
-/* Students Container */
+/* Profile Card Styles */
+.profile-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  border: 1px solid var(--card-border);
+  text-align: center;
+  max-width: 400px;
+}
+
+.profile-image img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 4px solid var(--card-border);
+}
+
+.profile-info h2 {
+  color: var(--text-primary);
+  margin: 20px 0 5px 0;
+  font-size: 1.8rem;
+}
+
+.profile-info h3 {
+  color: var(--text-secondary);
+  margin: 0 0 15px 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.profile-info p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ===== STUDENTS SECTION ===== */
 .students-container {
   width: 100%;
   max-width: 1200px;
@@ -336,7 +455,51 @@ html, body {
   margin-top: 30px;
 }
 
-/* Products Container */
+/* Student Card Styles */
+.student-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 0;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  margin: 0;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  border: 1px solid var(--card-border);
+  overflow: hidden;
+}
+
+.student-header {
+  background: var(--header-bg);
+  padding: 20px;
+  text-align: center;
+}
+
+.student-header h3 {
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.student-body {
+  padding: 25px;
+}
+
+.student-jurusan {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--price-color);
+  margin: 0 0 15px 0;
+}
+
+.student-description {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ===== PRODUCTS SECTION ===== */
 .products-container {
   width: 100%;
   max-width: 1200px;
@@ -470,7 +633,7 @@ html, body {
   transform: translateY(-3px);
 }
 
-/* Testimonials Container */
+/* ===== TESTIMONIALS SECTION ===== */
 .testimonials-container {
   width: 100%;
   max-width: 1200px;
@@ -491,7 +654,53 @@ html, body {
   margin-top: 30px;
 }
 
-/* Footer Styles */
+/* Testimonial Card Styles */
+.testimonial-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  margin: 0;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  border: 1px solid var(--card-border);
+  text-align: left;
+}
+
+.testimonial-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.testimonial-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.testimonial-rating {
+  display: flex;
+  gap: 2px;
+}
+
+.star {
+  color: #ccc;
+  font-size: 1.2rem;
+}
+
+.star.filled {
+  color: #ffc107;
+}
+
+.testimonial-body p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+  font-style: italic;
+}
+
+/* ===== FOOTER ===== */
 .footer {
   background: var(--footer-bg);
   color: white;
@@ -509,7 +718,7 @@ html, body {
   font-size: 1rem;
 }
 
-/* Button Styles */
+/* ===== BUTTONS ===== */
 button {
   background-color: var(--button-bg);
   color: #fff;
@@ -528,7 +737,7 @@ button:hover {
   transform: translateY(-2px);
 }
 
-/* Responsive Design */
+/* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
   .header {
     padding: 12px 20px;
